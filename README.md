@@ -10,7 +10,7 @@ for Mocha](https://vue-test-utils.vuejs.org/guides/testing-single-file-component
 
 ## Installation
 
-    npm install --save-dev git+https://github.com/rei/vunit.git
+    npm install --save-dev @rei/vunit
 
 ## Basic Usage
 
