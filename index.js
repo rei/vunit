@@ -19,7 +19,8 @@ const parsedArgs = {
            args['webpack-config'].length ?
              args['webpack-config'] :
              false :
-           false
+           false,
+  coverage: !!args.coverage,
 };
 
 // Validate args then pass to core.
