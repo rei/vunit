@@ -53,6 +53,8 @@ module.exports.run = conf => {
       '--colors',
       '--webpack-config',
       confPreprocessed.webpackConfig,
+      '--require', path.join(__dirname, 'setup.js'),
+      '--require', 'ignore-styles',
       confPreprocessed.specGlob
     ];
 
