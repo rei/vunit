@@ -4,21 +4,16 @@ const fs = require('fs');
 const glob = require('glob');
 const core = require('./core');
 
-const getArgs = lib.getArgs;
-const validateArgs = lib.validateArgs;
-
 /**
  * The exposed run function that client call.
  * @param parsedArgs
  */
 function run(parsedArgs) {
-  // Validate args then pass to core.
-
   if (!parsedArgs) {
     return false;
   }
 
-  core.run(validateArgs(parsedArgs, [{
+  core.run(lib.validateArgs(parsedArgs, [{
     option: 'webpack-config',
     validate: (val) => {
       if (val) {
@@ -54,7 +49,7 @@ function run(parsedArgs) {
 
 // If running via command line..
 if (require.main === module) {
-  run(lib.parseInput(getArgs()));
+  run(lib.parseInput(lib.getArgs()));
 }
 
 // Programmatic API

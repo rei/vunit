@@ -14,9 +14,13 @@ for Mocha](https://vue-test-utils.vuejs.org/guides/testing-single-file-component
 
 ## Basic Usage
 
-    npx vunit --spec=<path-glob-to-spec-files>
+### Running Unit Tests
 
-This will run all of the unit tests specified in `<path-to-spec-files>`.
+    npx vunit --spec=<glob-to-specs> [--watch]
+
+### Running Test Coverage
+
+    npx vunit --spec=<glob-to-specs> --coverage [--watch]
 
 ## Creating Unit Tests
 
@@ -32,7 +36,7 @@ Add `test` script to your `package.json`:
     {
         ...
         "scripts": {
-            "test": "vunit --spec=<path-glob-to-spec-files>"
+            "test": "vunit --spec=<glob-to-specs>"
         },
         ...
     }
@@ -45,8 +49,15 @@ The following options are available to the tool:
     webpack-config:     {String}    The path to your webpack.config.js (optional)
     watch:              {String}    Comma-separated list of directories to watch for changes, e.g. 
     --watch=src,test (optional).
+    coverage:           {None}      Flag indicating whether or not to run coverage.
 
-## Todo
-* npm repo.
-* Code coverage.
-* Add unit tests.
+## Programmatic API
+
+To use package via programmatic API, just `require` the module and call the exposed `run` command
+ with above options passed in as an object:
+ 
+    const vunit = require('vunit');
+    vunit.run({
+        spec: '/glob/to/specs',
+        ...
+    });

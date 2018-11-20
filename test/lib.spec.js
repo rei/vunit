@@ -11,7 +11,7 @@ describe('getArguments', () => {
     assert.deepEqual(lib.getArguments(argv), {
       a: '1',
       b: '2',
-      c: undefined
+      c: true
     });
   });
 });
