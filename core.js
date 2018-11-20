@@ -14,7 +14,8 @@ const chokidar = require('chokidar');
 const preProcess = (conf) => ({
   watchedDirectories: conf.watch && conf.watch.length ? conf.watch.split(',') : [],
   webpackConfig: `${conf['webpack-config'] ? conf['webpack-config'] : path.join(__dirname, 'webpack.config.js') }`,
-  specGlob: `${conf.spec ? conf.spec : ''}`
+  specGlob: `${conf.spec ? conf.spec : ''}`,
+  coverage: conf.coverage,
 });
 
 module.exports.preProcess = preProcess;
@@ -31,32 +32,39 @@ module.exports.run = conf => {
   console.log(`Running tests:` );
   console.log('--------------------------------');
   console.log(`watched directories: ${confPreprocessed.watchedDirectories}`);
-  console.log(`webpack config: ${confPreprocessed.webpackConfig}`);
+  console.log(`webpack config: ${conf['webpack-config'] ? conf['webpack-config'] : 'Using built-in config'}`);
   console.log(`specGlob: ${confPreprocessed.specGlob}`);
+  console.log(`Coverage: ${confPreprocessed.coverage}`);
   console.log('--------------------------------');
-
-
-  if (confPreprocessed.watchedDirectories.length > 0) {
-    watcher = chokidar.watch(confPreprocessed.watchedDirectories);
-  }
 
   /**
    * Compile via webpack config and run unit tests.
    */
   const run = () => {
 
-    // Execute mocha-webpack.
-    const cmd = cp.spawn('npx', [
+    // Base spawn command.
+    const spawnCmd = [
       'cross-env',
+      'BABEL_ENV=test',
       'NODE_ENV=test',
+      'nyc',
       'mocha-webpack',
+      '--require', path.join(__dirname, 'setup.js'),
       '--colors',
       '--webpack-config',
       confPreprocessed.webpackConfig,
       '--require', path.join(__dirname, 'setup.js'),
       '--require', 'ignore-styles',
       confPreprocessed.specGlob
-    ]);
+    ];
+
+    // Remove nyc if not running coverage.
+    if (!confPreprocessed.coverage) {
+      spawnCmd.splice(3, 1);
+    }
+
+    // Execute mocha-webpack.
+    const cmd = cp.spawn('npx', spawnCmd);
 
     cmd.stdout.on('data', (data) => {
       const d = data.toString();
@@ -65,17 +73,24 @@ module.exports.run = conf => {
       }
     });
 
+    // Log errors.
     cmd.stdout.on('error', (error) => {
       if (error) console.log(error);
     });
+
+    // Log errors.
+    cmd.stderr.on('data', data => console.log(data.toString()))
   };
 
   // Re-run tests on file change.
   if (confPreprocessed.watchedDirectories.length > 0) {
-    watcher.on('change', (path) => {
-      console.log(`${path} changed.`);
-      run();
-    });
+    if (!watcher) {
+      watcher = chokidar.watch(confPreprocessed.watchedDirectories);
+      watcher.on('change', (path) => {
+        console.log(`${path} changed.`);
+        run();
+      });
+    }
   }
 
   // Run tests.
