@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 const lib = require('./lib');
-const getArgs = lib.getArgs;
-const validateArgs = lib.validateArgs;
 const fs = require('fs');
 const glob = require('glob');
 const core = require('./core');
+
+const getArgs = lib.getArgs;
+const validateArgs = lib.validateArgs;
 
 /**
  * The exposed run function that client call.
