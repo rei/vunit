@@ -7,7 +7,7 @@
   "license": "MIT",
   "main": "./index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "NODE_TEST=test mocha"
   },
   "bin": {
     "vunit": "./index.js"
@@ -51,6 +51,7 @@
     "sourceMap": false
   },
   "devDependencies": {
-    "mocha": "^5.2.0"
+    "mocha": "^5.2.0",
+    "proxyquire": "^2.1.0"
   }
 }
