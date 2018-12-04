@@ -50,3 +50,33 @@ describe('validateArguments', () => {
     }]));
   });
 });
+
+describe('parseInput', () => {
+  it('should exist', () => {
+    assert(typeof lib.parseInput === 'function');
+  });
+
+  it('should return false if contains invalid option', () => {
+    const options = {
+      watch: 'js,test',
+      blah1: 1,
+      spec: '/path/to/spec'
+    };
+
+    assert.equal(lib.parseInput(options), null);
+  });
+
+  it('should return parsed options if valid input', () => {
+    const options = {
+      watch: 'js,test',
+      spec: '/path/to/spec'
+    };
+
+    assert.deepEqual(lib.parseInput(options), {
+      coverage: false,
+      spec: '/path/to/spec',
+      watch: 'js,test',
+      'webpack-config': false
+    });
+  });
+});

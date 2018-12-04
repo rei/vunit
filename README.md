@@ -50,3 +50,14 @@ The following options are available to the tool:
     watch:              {String}    Comma-separated list of directories to watch for changes, e.g. 
     --watch=src,test (optional).
     coverage:           {None}      Flag indicating whether or not to run coverage.
+
+## Programmatic API
+
+To use package via programmatic API, just `require` the module and call the exposed `run` command
+ with above options passed in as an object:
+ 
+    const vunit = require('vunit');
+    vunit.run({
+        spec: '/glob/to/specs',
+        ...
+    });

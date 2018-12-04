@@ -1,13 +1,13 @@
 {
   "name": "@rei/vunit",
   "description": "Write unit tests against your Vue components using mocha and vue-test-utils",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "author": "Alex Perkins <peripateticus.gh@gmail.com>",
   "repository": "https://github.com/rei/vunit",
   "license": "MIT",
   "main": "./index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "NODE_TEST=test mocha"
   },
   "bin": {
     "vunit": "./index.js"
@@ -51,6 +51,7 @@
     "sourceMap": false
   },
   "devDependencies": {
-    "mocha": "^5.2.0"
+    "mocha": "^5.2.0",
+    "proxyquire": "^2.1.0"
   }
 }
