@@ -68,6 +68,10 @@ module.exports.run = conf => {
     cmd.stdout.on('error', (error) => {
       if (error) console.log(error);
     });
+
+    cmd.on('exit', (code) => {
+      process.exitCode = code;
+    });
   };
 
   // Re-run tests on file change.
