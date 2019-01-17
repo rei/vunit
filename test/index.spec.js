@@ -47,7 +47,7 @@ describe('run', () => {
   it('should return exit code 0 if tests pass', (done) => {
     const cmd = cp.spawn('node', [
       path.resolve(__dirname, '../index.js'),
-      '--spec=./test/harness/List.spec.js',
+      '--spec=./test/harness/passing-test.spec.js',
     ]);
 
     cmd.on('exit', (code) => {
@@ -59,7 +59,7 @@ describe('run', () => {
   it('should return exit code 1 if tests fail', (done) => {
     const cmd = cp.spawn('node', [
       path.resolve(__dirname, '../index.js'),
-      '--spec=./test/harness/List-failing-test.spec.js',
+      '--spec=./test/harness/failing-test.spec.js',
     ]);
 
     cmd.on('exit', (code) => {
