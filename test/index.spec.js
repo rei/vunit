@@ -5,8 +5,8 @@ const path = require('path');
 
 const mod = pq('../index.js', {
   './core': {
-    run: () => {}
-  }
+    run: () => {},
+  },
 });
 
 describe('run', () => {
@@ -17,19 +17,19 @@ describe('run', () => {
   it('should return parsed input', () => {
     assert.deepEqual(mod.run({
       watch: true,
-      spec: 'path/to/spec'
+      spec: 'path/to/spec',
     }), {
       watch: true,
       coverage: false,
       'webpack-config': false,
-      spec: 'path/to/spec'
-    })
+      spec: 'path/to/spec',
+    });
   });
 
   it('should get config from command-line', (done) => {
     const cmd = cp.spawn('node', [
       path.resolve(__dirname, '../index.js'),
-      '--spec2=/some/path'
+      '--spec2=/some/path',
     ]);
 
     let errorMessage;
@@ -40,8 +40,31 @@ describe('run', () => {
 
     cmd.stdout.on('close', () => {
       assert.ok(errorMessage.includes('Invalid option given: spec2'));
-      done()
+      done();
+    });
+  });
+
+  it('should return exit code 0 if tests pass', (done) => {
+    const cmd = cp.spawn('node', [
+      path.resolve(__dirname, '../index.js'),
+      '--spec=./test/harness/passing-test.spec.js',
+    ]);
+
+    cmd.on('exit', (code) => {
+      assert.equal(code, 0);
+      done();
+    });
+  });
+
+  it('should return exit code 1 if tests fail', (done) => {
+    const cmd = cp.spawn('node', [
+      path.resolve(__dirname, '../index.js'),
+      '--spec=./test/harness/failing-test.spec.js',
+    ]);
+
+    cmd.on('exit', (code) => {
+      assert.equal(code, 1);
+      done();
     });
   });
 });
-
