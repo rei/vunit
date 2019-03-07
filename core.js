@@ -16,6 +16,7 @@ const preProcess = conf => ({
   webpackConfig: `${conf['webpack-config'] ? conf['webpack-config'] : path.join(__dirname, 'webpack.config.js')}`,
   specGlob: `${conf.spec ? conf.spec : ''}`,
   coverage: conf.coverage,
+  report: conf.report
 });
 
 module.exports.preProcess = preProcess;
@@ -47,6 +48,8 @@ module.exports.run = (conf) => {
       'BABEL_ENV=test',
       'NODE_ENV=test',
       'nyc',
+      '--reporter=lcov',
+      '--report-dir=coverage-vue',
       'mocha-webpack',
       '--require', path.join(__dirname, 'setup.js'),
       '--colors',
@@ -57,10 +60,12 @@ module.exports.run = (conf) => {
       confPreprocessed.specGlob,
     ];
 
-    // Remove nyc if not running coverage.
+    // Remove nyc its options if not running coverage.
     if (!confPreprocessed.coverage) {
-      spawnCmd.splice(3, 1);
+      spawnCmd.splice(3, 3);
     }
+
+    // Remove reporter if not running
 
     // Execute mocha-webpack.
     const cmd = cp.spawn('npx', spawnCmd);

@@ -2,9 +2,9 @@
 
 ## Description
 
-Unit testing for Vue components. This tool allows you to easily test your Vue components using 
-[mocha](https://mochajs.org) and [vue-test-utils](https://vue-test-utils.vuejs.org/). It is based on the following documents: 
- * [vue-test-utils 
+Unit testing for Vue components. This tool allows you to easily test your Vue components using
+[mocha](https://mochajs.org) and [vue-test-utils](https://vue-test-utils.vuejs.org/). It is based on the following documents:
+ * [vue-test-utils
 for Mocha](https://vue-test-utils.vuejs.org/guides/testing-single-file-components-with-mocha-webpack.html)
  * [example](https://github.com/vuejs/vue-test-utils-mocha-webpack-example)
 
@@ -22,15 +22,17 @@ for Mocha](https://vue-test-utils.vuejs.org/guides/testing-single-file-component
 
     npx vunit --spec=<glob-to-specs> --coverage [--watch]
 
+    Report is generated at `./coverage-vue`
+
 ## Creating Unit Tests
 
 See the [vue-test-utils documentation](https://vue-test-utils.vuejs.org/) for creating unit tests
- using `vue-test-utils`. 
+ using `vue-test-utils`.
 
 Create your spec files via [mocha](https://mochajs.org) syntax.
 
 ## Update `npm test` Script(s)
-    
+
 Add `test` script to your `package.json`:
 
     {
@@ -43,19 +45,19 @@ Add `test` script to your `package.json`:
 
 ## Command-line Options
 
-The following options are available to the tool: 
+The following options are available to the tool:
 
     spec:               {String}    The path glob to your Vue unit tests (required)
     webpack-config:     {String}    The path to your webpack.config.js (optional)
-    watch:              {String}    Comma-separated list of directories to watch for changes, e.g. 
+    watch:              {String}    Comma-separated list of directories to watch for changes, e.g.
     --watch=src,test (optional).
-    coverage:           {None}      Flag indicating whether or not to run coverage.
+    coverage:           {None}      Flag indicating whether or not to run coverage. Report is generated at `./coverage-vue`
 
 ## Programmatic API
 
 To use package via programmatic API, just `require` the module and call the exposed `run` command
  with above options passed in as an object:
- 
+
     const vunit = require('vunit');
     vunit.run({
         spec: '/glob/to/specs',
