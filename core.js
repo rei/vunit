@@ -1,5 +1,5 @@
 const os = require('os');
-const cp = require('child_process');
+const spawn = require('cross-spawn');
 const path = require('path');
 const chokidar = require('chokidar');
 
@@ -68,7 +68,7 @@ module.exports.run = (conf) => {
     // Remove reporter if not running
 
     // Execute mocha-webpack.
-    const cmd = cp.spawn('npx', spawnCmd);
+    const cmd = spawn('npx', spawnCmd);
 
     cmd.stdout.on('data', (data) => {
       const d = data.toString();

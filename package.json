@@ -1,13 +1,13 @@
 {
   "name": "@rei/vunit",
   "description": "Write unit tests against your Vue components using mocha and vue-test-utils",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "author": "Alex Perkins <peripateticus.gh@gmail.com>",
   "repository": "https://github.com/rei/vunit",
   "license": "MIT",
   "main": "./index.js",
   "scripts": {
-    "test": "NODE_TEST=test mocha"
+    "test": "mocha --timeout 5000"
   },
   "bin": {
     "vunit": "./index.js"
@@ -24,6 +24,7 @@
     "babel-plugin-istanbul": "^4.1.5",
     "chokidar": "^2.0.4",
     "cross-env": "^5.0.5",
+    "cross-spawn": "^6.0.5",
     "css-loader": "^0.28.7",
     "expect": "^21.2.1",
     "glob": "^7.1.3",
