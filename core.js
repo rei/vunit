@@ -1,5 +1,5 @@
 const os = require('os');
-const cp = require('child_process');
+const spawn = require('cross-spawn');
 const path = require('path');
 const chokidar = require('chokidar');
 
@@ -49,7 +49,8 @@ module.exports.run = (conf) => {
       'NODE_ENV=test',
       'nyc',
       '--reporter=lcov',
-      '--report-dir=coverage-vue',
+      '--reporter=text',
+      '--report-dir=coverage',
       'mocha-webpack',
       '--require', path.join(__dirname, 'setup.js'),
       '--colors',
@@ -60,15 +61,13 @@ module.exports.run = (conf) => {
       confPreprocessed.specGlob,
     ];
 
-    // Remove nyc its options if not running coverage.
+    // Remove nyc and its options if not running coverage.
     if (!confPreprocessed.coverage) {
-      spawnCmd.splice(3, 3);
+      spawnCmd.splice(3, 4);
     }
 
-    // Remove reporter if not running
-
     // Execute mocha-webpack.
-    const cmd = cp.spawn('npx', spawnCmd);
+    const cmd = spawn('npx', spawnCmd);
 
     cmd.stdout.on('data', (data) => {
       const d = data.toString();
