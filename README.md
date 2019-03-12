@@ -22,7 +22,7 @@ for Mocha](https://vue-test-utils.vuejs.org/guides/testing-single-file-component
 
     npx vunit --spec=<glob-to-specs> --coverage [--watch]
 
-    Report is generated at `./coverage-vue`
+    Report is generated at `./coverage`
 
 ## Creating Unit Tests
 
