@@ -49,7 +49,8 @@ module.exports.run = (conf) => {
       'NODE_ENV=test',
       'nyc',
       '--reporter=lcov',
-      '--report-dir=coverage-vue',
+      '--reporter=text',
+      '--report-dir=coverage',
       'mocha-webpack',
       '--require', path.join(__dirname, 'setup.js'),
       '--colors',
@@ -60,12 +61,10 @@ module.exports.run = (conf) => {
       confPreprocessed.specGlob,
     ];
 
-    // Remove nyc its options if not running coverage.
+    // Remove nyc and its options if not running coverage.
     if (!confPreprocessed.coverage) {
-      spawnCmd.splice(3, 3);
+      spawnCmd.splice(3, 4);
     }
-
-    // Remove reporter if not running
 
     // Execute mocha-webpack.
     const cmd = spawn('npx', spawnCmd);
