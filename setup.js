@@ -2,7 +2,10 @@
 process.stdout.write('Setting up JSDOM...');
 require('jsdom-global')();
 
-// https://github.com/vuejs/vue-test-utils/issues/936#issuecomment-415386167
+// See https://github.com/vuejs/vue/issues/9698
+global.performance = window.performance;
+
+// See https://github.com/vuejs/vue-test-utils/issues/936#issuecomment-415386167
 window.Date = Date;
 
 if (window && window.document) {
