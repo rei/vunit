@@ -50,6 +50,7 @@ module.exports.run = (conf) => {
       'nyc',
       '--reporter=lcov',
       '--reporter=text',
+      '--reporter=json-summary', // Required by @rei/cov-stats
       '--report-dir=coverage',
       'mocha-webpack',
       '--require', path.join(__dirname, 'setup.js'),
@@ -63,7 +64,7 @@ module.exports.run = (conf) => {
 
     // Remove nyc and its options if not running coverage.
     if (!confPreprocessed.coverage) {
-      spawnCmd.splice(3, 4);
+      spawnCmd.splice(3, 5);
     }
 
     // Execute mocha-webpack.
