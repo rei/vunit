@@ -1,5 +1,6 @@
 var path = require('path');
 const postCSSImport = require('postcss-import');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
   entry: './src/main.js',
@@ -45,6 +46,9 @@ module.exports = {
   performance: {
     hints: false
   },
+  plugins: [
+    new VueLoaderPlugin(),
+  ],
   devtool: '#eval-source-map'
 };
 
