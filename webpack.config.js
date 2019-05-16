@@ -9,6 +9,7 @@ module.exports = {
     publicPath: '/dist/',
     filename: 'build.js'
   },
+  mode: 'development',
   resolve: {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
