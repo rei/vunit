@@ -58,6 +58,7 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-vue": "^5.1.0",
     "mocha": "^5.2.0",
-    "proxyquire": "^2.1.0"
+    "proxyquire": "^2.1.0",
+    "webpack": "^4.31.0"
   }
 }
