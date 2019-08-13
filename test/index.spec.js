@@ -23,6 +23,7 @@ describe('run', () => {
       coverage: false,
       'webpack-config': false,
       spec: 'path/to/spec',
+      require: false,
     });
   });
 

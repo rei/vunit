@@ -16,7 +16,8 @@ const preProcess = conf => ({
   webpackConfig: `${conf['webpack-config'] ? conf['webpack-config'] : path.join(__dirname, 'webpack.config.js')}`,
   specGlob: `${conf.spec ? conf.spec : ''}`,
   coverage: conf.coverage,
-  report: conf.report
+  report: conf.report,
+  require: conf.require ? conf.require : '',
 });
 
 module.exports.preProcess = preProcess;
@@ -36,6 +37,7 @@ module.exports.run = (conf) => {
   console.log(`webpack config: ${conf['webpack-config'] ? conf['webpack-config'] : 'Using built-in config'}`);
   console.log(`specGlob: ${confPreprocessed.specGlob}`);
   console.log(`Coverage: ${confPreprocessed.coverage}`);
+  if(conf.require)console.log(`Required files: ${confPreprocessed.require}`);
   console.log('--------------------------------');
 
   /**
@@ -65,6 +67,11 @@ module.exports.run = (conf) => {
     // Remove nyc and its options if not running coverage.
     if (!confPreprocessed.coverage) {
       spawnCmd.splice(3, 5);
+    }
+
+    if(conf.require) {
+      spawnCmd.push('--require');
+      spawnCmd.push(confPreprocessed.require);
     }
 
     // Execute mocha-webpack.

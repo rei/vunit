@@ -76,7 +76,8 @@ describe('parseInput', () => {
       coverage: false,
       spec: '/path/to/spec',
       watch: 'js,test',
-      'webpack-config': false
+      'webpack-config': false,
+      require: false,
     });
   });
 });
