@@ -48,4 +48,16 @@ describe('preProcess', () => {
       }).specGlob, '');
     });
   });
+  describe('additional required file', () => {
+    it('should pass in an additional required file if specified', () => {
+      assert.equal(core.preProcess({
+        'require': './a'
+      }).require, './a')
+    });
+    it('should exclude the argument if empty', () => {
+      assert.equal(core.preProcess({
+        'require': false
+      }).require, '')
+    })
+  })
 });

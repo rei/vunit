@@ -44,6 +44,15 @@ function run(parsedArgs) {
       return true;
     },
     error: "Please specify valid directories to watch.",
+  }, {
+    option: 'require',
+    validate: (val) => {
+      if (val) {
+        return fs.existsSync(val);
+      }
+      return true;
+    },
+    error: "The specified required file does not exist.",
   }]));
 }
 
