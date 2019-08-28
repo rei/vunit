@@ -52,6 +52,7 @@ The following options are available to the tool:
     watch:              {String}    Comma-separated list of directories to watch for changes, e.g.
     --watch=src,test (optional).
     coverage:           {None}      Flag indicating whether or not to run coverage. Report is generated at `./coverage-vue`
+    require:            {None}      Path to include a module (like a setup script) before loading tests (optional)
 
 ## Programmatic API
 
