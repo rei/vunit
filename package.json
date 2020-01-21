@@ -1,7 +1,7 @@
 {
   "name": "@rei/vunit",
   "description": "Write unit tests against your Vue components using mocha and vue-test-utils",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "author": "Alex Perkins <peripateticus.gh@gmail.com>",
   "repository": "https://github.com/rei/vunit",
   "license": "MIT",
@@ -16,13 +16,13 @@
     "node": ">8.0.0"
   },
   "dependencies": {
-    "@babel/core": "^7.1.2",
-    "@babel/preset-env": "^7.1.0",
-    "@babel/register": "^7.0.0",
+    "@babel/core": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "@babel/register": "^7.8.3",
     "@vue/test-utils": "^1.0.0-beta.25",
-    "babel-loader": "^8.0.0",
+    "babel-loader": "^8.0.6",
     "babel-plugin-istanbul": "^4.1.5",
-    "chokidar": "^2.0.4",
+    "chokidar": "^2.1.8",
     "cross-env": "^5.0.5",
     "cross-spawn": "^6.0.5",
     "css-loader": "^0.28.7",
@@ -39,9 +39,9 @@
     "postcss-loader": "^3.0.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
-    "vue": "^2.4.4",
-    "vue-loader": "^15.7.0",
-    "vue-template-compiler": "^2.5.17",
+    "vue": "^2.6.11",
+    "vue-loader": "^15.8.3",
+    "vue-template-compiler": "^2.6.11",
     "webpack-dev-server": "^2.9.1",
     "webpack-node-externals": "^1.6.0"
   },
@@ -53,12 +53,12 @@
     "sourceMap": false
   },
   "devDependencies": {
-    "eslint": "^5.3.0",
-    "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-vue": "^5.1.0",
-    "mocha": "^5.2.0",
-    "proxyquire": "^2.1.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.20.0",
+    "eslint-plugin-vue": "^6.1.2",
+    "mocha": "^7.0.0",
+    "proxyquire": "^2.1.3",
     "webpack": "^4.31.0"
   }
 }
