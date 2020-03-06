@@ -2,15 +2,14 @@
 
 ## Description
 
-Unit testing for Vue components. This tool allows you to easily test your Vue components using
-[mocha](https://mochajs.org) and [vue-test-utils](https://vue-test-utils.vuejs.org/). It is based on the following documents:
+Unit testing tool for [Vue.js](https://vuejs.org/) components. This tool allows you to easily test your Vue components using [mocha](https://mochajs.org) and [@vue/test-utils](https://vue-test-utils.vuejs.org/). Additionally, it provides code-coverage reporting via [nyc/istanbul](https://istanbul.js.org/) for both Vue components and vanilla js. It is based on the following documents:
  * [vue-test-utils
 for Mocha](https://vue-test-utils.vuejs.org/guides/testing-single-file-components-with-mocha-webpack.html)
  * [example](https://github.com/vuejs/vue-test-utils-mocha-webpack-example)
 
 ## Installation
 
-    npm install --save-dev @rei/vunit
+    npm install --save-dev @rei/vunit @vue/test-utils
 
 ## Basic Usage
 
@@ -26,10 +25,9 @@ for Mocha](https://vue-test-utils.vuejs.org/guides/testing-single-file-component
 
 ## Creating Unit Tests
 
-See the [vue-test-utils documentation](https://vue-test-utils.vuejs.org/) for creating unit tests
- using `vue-test-utils`.
-
-Create your spec files via [mocha](https://mochajs.org) syntax.
+* Refer to the [@vue/test-utils documentation](https://vue-test-utils.vuejs.org/) for examples and [API](https://vue-test-utils.vuejs.org/api/).
+* Create your spec files via [mocha](https://mochajs.org) syntax.
+* [Chai's expect](https://www.chaijs.com/api/bdd/) is made globally available in your spec files for assertions.
 
 ## Update `npm test` Script(s)
 
