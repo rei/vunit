@@ -1,5 +1,8 @@
 # Changelog
 
+## 3.0.1
+### 8/19/2020 - [Diff](https://github.com/rei/vunit/compare/3.0.0...3.0.1) — [Docs](https://github.com/rei/vunit/blob/3.0.1/ReadMe.md)
+* Updating dependencies causing security vulnerabilities.
 ## 3.0.0
 ### 3/5/2020 — [Diff](https://github.com/rei/vunit/compare/2.1.4...3.0.0) — [Docs](https://github.com/rei/vunit/blob/3.0.0/ReadMe.md)
 * Breaking changes:
