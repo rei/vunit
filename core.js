@@ -61,6 +61,7 @@ module.exports.run = (conf) => {
       confPreprocessed.webpackConfig,
       '--require', path.join(__dirname, 'setup.js'),
       '--require', 'ignore-styles',
+      '--require', 'esm',
       confPreprocessed.specGlob,
     ];
 
