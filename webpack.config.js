@@ -1,4 +1,4 @@
-var path = require('path');
+const path = require('path');
 const postCSSImport = require('postcss-import');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
@@ -7,20 +7,20 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
-    filename: 'build.js'
+    filename: 'build.js',
   },
   mode: 'development',
   resolve: {
     alias: {
-      'vue$': 'vue/dist/vue.esm.js',
-      '@src': path.resolve(__dirname, 'src')
-    }
+      vue$: 'vue/dist/vue.esm.js',
+      '@src': path.resolve(__dirname, 'src'),
+    },
   },
   module: {
     rules: [
       {
         test: /\.vue$/,
-        loader: 'vue-loader'
+        loader: 'vue-loader',
       },
       {
         test: /\.js$/,
@@ -28,39 +28,46 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-env'],
-            plugins: ['istanbul']
-          }
+            plugins: [
+              ['istanbul'],
+              [
+                '@babel/plugin-transform-runtime', {
+                  regenerator: true,
+                },
+              ],
+            ],
+          },
         },
-        exclude: /node_modules/
+        exclude: /node_modules/,
       }, {
         test: /\.scss$/,
         use: [
-          "style-loader",
-          "css-loader",
+          'style-loader',
+          'css-loader',
           {
             loader: 'postcss-loader',
             options: {
-              plugins: loader => [
+              plugins: (loader) => [
                 postCSSImport({ root: loader.resourcePath }),
               ],
             },
           },
-          "sass-loader"
-        ]
-      }
-    ]
+          'sass-loader',
+        ],
+      },
+    ],
   },
   performance: {
-    hints: false
+    hints: false,
   },
   plugins: [
     new VueLoaderPlugin(),
   ],
-  devtool: '#eval-source-map'
+  devtool: '#eval-source-map',
 };
 
 // test specific setups
 if (process.env.NODE_ENV === 'test') {
-  module.exports.externals = [require('webpack-node-externals')()]
-  module.exports.devtool = 'eval'
+  module.exports.externals = [require('webpack-node-externals')()];
+  module.exports.devtool = 'eval';
 }
