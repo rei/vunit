@@ -1,5 +1,17 @@
 # Changelog
 
+## 4.0.0
+### 12/03/2020 - [Diff](https://github.com/rei/vunit/compare/4.0.0...3.0.1) — [Docs](https://github.com/rei/vunit/blob/4.0.0/ReadMe.md)
+- Switching from mocha-webpack to mochapack due to lack of maintenance now on mocha-webpack.
+- See
+  - https://www.npmjs.com/package/mochapack
+  - zinserjan/mocha-webpack#308
+  - https://github.com/zinserjan/mocha-webpack/issues
+- Enabling async/await in client mocha unit tests via babel config in webpack.conf.
+- Updating mocha to v8.
+- Updating @babel dependencies.
+- Adding .eslintrc.json
+
 ## 3.0.1
 ### 8/19/2020 - [Diff](https://github.com/rei/vunit/compare/3.0.0...3.0.1) — [Docs](https://github.com/rei/vunit/blob/3.0.1/ReadMe.md)
 * Updating dependencies causing security vulnerabilities.
