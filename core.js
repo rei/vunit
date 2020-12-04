@@ -54,7 +54,7 @@ module.exports.run = (conf) => {
       '--reporter=text',
       '--reporter=json-summary', // Required by @rei/cov-stats
       '--report-dir=coverage',
-      'mocha-webpack',
+      'mochapack',
       '--require', path.join(__dirname, 'setup.js'),
       '--colors',
       '--webpack-config',
