@@ -11,7 +11,7 @@ const chokidar = require('chokidar');
  * @param {string}  conf.spec           Glob to mocha spec files.
  */
 
-const preProcess = conf => ({
+const preProcess = (conf) => ({
   watchedDirectories: conf.watch && conf.watch.length ? conf.watch.split(',') : [],
   webpackConfig: `${conf['webpack-config'] ? conf['webpack-config'] : path.join(__dirname, 'webpack.config.js')}`,
   specGlob: `${conf.spec ? conf.spec : ''}`,
@@ -21,6 +21,12 @@ const preProcess = conf => ({
 });
 
 module.exports.preProcess = preProcess;
+
+/**
+ * Get the full path to NYC config in order to point the client to .nycrc in @rei/vunit.
+ * @returns {string}
+ */
+const getPathToNYCConfig = () => path.join(__dirname, '.nycrc');
 
 module.exports.run = (conf) => {
   let watcher;
@@ -37,7 +43,9 @@ module.exports.run = (conf) => {
   console.log(`webpack config: ${conf['webpack-config'] ? conf['webpack-config'] : 'Using built-in config'}`);
   console.log(`specGlob: ${confPreprocessed.specGlob}`);
   console.log(`Coverage: ${confPreprocessed.coverage}`);
-  if(conf.require)console.log(`Required files: ${confPreprocessed.require}`);
+  console.log(`NYC Config: ${getPathToNYCConfig()}`);
+
+  if (conf.require)console.log(`Required files: ${confPreprocessed.require}`);
   console.log('--------------------------------');
 
   /**
@@ -50,6 +58,7 @@ module.exports.run = (conf) => {
       'BABEL_ENV=test',
       'NODE_ENV=test',
       'nyc',
+      `--nycrc-path=${getPathToNYCConfig()}`, // Use local .nycrc
       '--reporter=lcov',
       '--reporter=text',
       '--reporter=json-summary', // Required by @rei/cov-stats
@@ -66,10 +75,10 @@ module.exports.run = (conf) => {
 
     // Remove nyc and its options if not running coverage.
     if (!confPreprocessed.coverage) {
-      spawnCmd.splice(3, 5);
+      spawnCmd.splice(3, 6);
     }
 
-    if(conf.require) {
+    if (conf.require) {
       spawnCmd.push('--require');
       spawnCmd.push(confPreprocessed.require);
     }
