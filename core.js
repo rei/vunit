@@ -43,7 +43,10 @@ module.exports.run = (conf) => {
   console.log(`webpack config: ${conf['webpack-config'] ? conf['webpack-config'] : 'Using built-in config'}`);
   console.log(`specGlob: ${confPreprocessed.specGlob}`);
   console.log(`Coverage: ${confPreprocessed.coverage}`);
-  console.log(`NYC Config: ${getPathToNYCConfig()}`);
+
+  if (confPreprocessed.coverage) {
+    console.log(`NYC Config: ${getPathToNYCConfig()}`);
+  }
 
   if (conf.require)console.log(`Required files: ${confPreprocessed.require}`);
   console.log('--------------------------------');
