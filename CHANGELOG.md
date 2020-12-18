@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.0.1
+### 12/17/2020 - [Diff](https://github.com/rei/vunit/compare/4.0.1...4.0.0) — [Docs](https://github.com/rei/vunit/blob/4.0.1/ReadMe.md)
+- Ensuring client uses .nycrc config from @rei/vunit. This fixes issue of no src files being reported during coverage run.
+- Include .vue, .js extensions
+- Exclude test/ directory
+
 ## 4.0.0
 ### 12/03/2020 - [Diff](https://github.com/rei/vunit/compare/4.0.0...3.0.1) — [Docs](https://github.com/rei/vunit/blob/4.0.0/ReadMe.md)
 - Switching from mocha-webpack to mochapack due to lack of maintenance now on mocha-webpack.

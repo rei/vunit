@@ -1,0 +1,23 @@
+{
+"require": [
+      "@babel/register"
+    ],
+    "extension": [".vue"],
+    "include": [
+      "src/**/*.vue",
+      "src/**/*.js"
+    ],
+    "exclude": [
+      "src/test/js/**/*.spec.js",
+      "src/test/js/**/*.vue-spec.js",
+      "test/**/*.js",
+      "dist",
+      "target",
+      "node_modules",
+      "coverage",
+      ".babelcache",
+      "webpack.overrides.conf.js"
+    ],
+    "sourceMap": false,
+    "instrument": false
+  }
