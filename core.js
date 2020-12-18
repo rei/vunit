@@ -2,6 +2,7 @@ const os = require('os');
 const spawn = require('cross-spawn');
 const path = require('path');
 const chokidar = require('chokidar');
+const fs = require('fs');
 
 /**
  *
@@ -22,11 +23,45 @@ const preProcess = (conf) => ({
 
 module.exports.preProcess = preProcess;
 
+// Path to client's NYC config (may or may not actually exist)
+const localNYCConfigPath = path.join(process.cwd(), '.nycrc');
+
+// Helper function to return passed in path if it exists or a default path.
+const fileExistsOrDefault = (path1, defaultPath, fslocal = fs) => (fslocal.existsSync(path1)
+  ? path1
+  : defaultPath
+);
+
 /**
  * Get the full path to NYC config in order to point the client to .nycrc in @rei/vunit.
+ * If a local .nycrc exists, use that, otherwise use the path to @rei/vunit's .nycrc.
  * @returns {string}
  */
-const getPathToNYCConfig = () => path.join(__dirname, '.nycrc');
+const pathToNYCConfig = fileExistsOrDefault(localNYCConfigPath, path.join(__dirname, '.nycrc'));
+
+/**
+ * Check if file is is valid JSON.
+ * @param pth
+ * @param fslocal
+ * @returns {boolean}
+ */
+const isValidJSON = (pth, fslocal = fs) => {
+  try {
+    JSON.parse(fslocal.readFileSync(pth, 'utf8'));
+  } catch (e) {
+    return false;
+  }
+  return true;
+};
+
+// Check JSON config.
+if (!isValidJSON(pathToNYCConfig)) {
+  console.error(`.nycrc is invalid, ${pathToNYCConfig}`);
+  process.exit(1);
+}
+
+module.exports.isValidJSON = isValidJSON;
+module.exports.fileExistsOrDefault = fileExistsOrDefault;
 
 module.exports.run = (conf) => {
   let watcher;
@@ -45,7 +80,7 @@ module.exports.run = (conf) => {
   console.log(`Coverage: ${confPreprocessed.coverage}`);
 
   if (confPreprocessed.coverage) {
-    console.log(`NYC Config: ${getPathToNYCConfig()}`);
+    console.log(`NYC Config: ${pathToNYCConfig}`);
   }
 
   if (conf.require)console.log(`Required files: ${confPreprocessed.require}`);
@@ -61,7 +96,7 @@ module.exports.run = (conf) => {
       'BABEL_ENV=test',
       'NODE_ENV=test',
       'nyc',
-      `--nycrc-path=${getPathToNYCConfig()}`, // Use local .nycrc
+      `--nycrc-path=${pathToNYCConfig}`, // Use local .nycrc
       '--reporter=lcov',
       '--reporter=text',
       '--reporter=json-summary', // Required by @rei/cov-stats
@@ -86,7 +121,7 @@ module.exports.run = (conf) => {
       spawnCmd.push(confPreprocessed.require);
     }
 
-    // Execute mocha-webpack.
+    // Execute mochapack.
     const cmd = spawn('npx', spawnCmd);
 
     cmd.stdout.on('data', (data) => {

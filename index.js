@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-const lib = require('./lib');
 const fs = require('fs');
 const glob = require('glob');
+const lib = require('./lib');
 const core = require('./core');
 
 /**
@@ -21,7 +21,7 @@ function run(parsedArgs) {
       }
       return true;
     },
-    error: "The specified webpack config does not exist.",
+    error: 'The specified webpack config does not exist.',
   }, {
     option: 'spec',
     validate: (val) => {
@@ -30,20 +30,18 @@ function run(parsedArgs) {
       }
       return true;
     },
-    error: "No spec files were found.",
+    error: 'No spec files were found.',
   }, {
     option: 'watch',
     validate: (val) => {
       if (!val) return true;
 
       if (val.length > 0) {
-        return val.split(',').every(dir => {
-          return fs.existsSync(dir);
-        });
+        return val.split(',').every((dir) => fs.existsSync(dir));
       }
       return true;
     },
-    error: "Please specify valid directories to watch.",
+    error: 'Please specify valid directories to watch.',
   }, {
     option: 'require',
     validate: (val) => {
@@ -52,7 +50,7 @@ function run(parsedArgs) {
       }
       return true;
     },
-    error: "The specified required file does not exist.",
+    error: 'The specified required file does not exist.',
   }]));
 }
 
@@ -63,9 +61,9 @@ if (require.main === module) {
 
 // Programmatic API
 module.exports = {
-  run: function (conf) {
+  run(conf) {
     const parsedInput = lib.parseInput(conf);
     run(parsedInput);
     return parsedInput;
-  }
+  },
 };
