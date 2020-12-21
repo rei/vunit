@@ -52,6 +52,13 @@ The following options are available to the tool:
     coverage:           {None}      Flag indicating whether or not to run coverage. Report is generated at `./coverage-vue`
     require:            {None}      Path to include a module (like a setup script) before loading tests (optional)
 
+## Overriding the NYC Code Coverage Configuration
+
+If you need to modify any of the [NYC test coverage configuration options](https://github.com/istanbuljs/nyc#common-configuration-options)
+that are provided by default, you can create a local `.nycrc` config file and configure as needed. 
+
+Start by just copying the [default .nycrc file](./.nycrc) to your local directory and modify as needed.
+
 ## Programmatic API
 
 To use package via programmatic API, just `require` the module and call the exposed `run` command

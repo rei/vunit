@@ -60,4 +60,30 @@ describe('preProcess', () => {
       }).require, '');
     });
   });
+
+  describe('NYC Config', () => {
+    it('should use client .nycrc', () => {
+      assert.equal(core.fileExistsOrDefault('path/one', 'path/two', {
+        existsSync: () => true,
+      }), 'path/one');
+    });
+
+    it('should use default .nycrc if no client .nycrc present', () => {
+      assert.equal(core.fileExistsOrDefault('path/one', 'path/two', {
+        existsSync: () => false,
+      }), 'path/two');
+    });
+
+    it('isValidJSON should return false if invalid .nycrc JSON', () => {
+      assert.equal(core.isValidJSON('', {
+        readFileSync: () => '',
+      }), false);
+    });
+
+    it('isValidJSON should return true if valid .nycrc JSON', () => {
+      assert.equal(core.isValidJSON('', {
+        readFileSync: () => JSON.stringify({ a: 1, b: 2 }),
+      }), true);
+    });
+  });
 });

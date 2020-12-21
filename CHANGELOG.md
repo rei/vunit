@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.1.0
+### 12/18/2020 - [Diff](https://github.com/rei/vunit/compare/4.1.0...4.0.1) — [Docs](https://github.com/rei/vunit/blob/4.1.0/ReadMe.md)
+- Allow overriding of `.nycrc`. If a local `.nycrc` is present, it will use that instead of default `.nycrc`.
+
 ## 4.0.1
 ### 12/17/2020 - [Diff](https://github.com/rei/vunit/compare/4.0.1...4.0.0) — [Docs](https://github.com/rei/vunit/blob/4.0.1/ReadMe.md)
 - Ensuring client uses .nycrc config from @rei/vunit. This fixes issue of no src files being reported during coverage run.
