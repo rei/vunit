@@ -69,3 +69,7 @@ To use package via programmatic API, just `require` the module and call the expo
         spec: '/glob/to/specs',
         ...
     });
+
+## Vue 2 -> 3 Migration Guide
+
+See the [Vue Test Utils Migration page](https://vue-test-utils.vuejs.org/v2/guide/migration.html) regarding API changes.
