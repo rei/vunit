@@ -51,6 +51,7 @@ The following options are available to the tool:
     --watch=src,test (optional).
     coverage:           {None}      Flag indicating whether or not to run coverage. Report is generated at `./coverage-vue`
     require:            {None}      Path to include a module (like a setup script) before loading tests (optional)
+    reporter:           {String}    The mocha reporter (default is spec)
 
 ## Overriding the NYC Code Coverage Configuration
 

@@ -3,7 +3,6 @@ const spawn = require('cross-spawn');
 const path = require('path');
 const chokidar = require('chokidar');
 const fs = require('fs');
-
 /**
  *
  * @param {Object } conf
@@ -19,6 +18,7 @@ const preProcess = (conf) => ({
   coverage: conf.coverage,
   report: conf.report,
   require: conf.require ? conf.require : '',
+  reporter: conf.reporter ? conf.reporter : 'spec',
 });
 
 module.exports.preProcess = preProcess;
@@ -108,6 +108,7 @@ module.exports.run = (conf) => {
       confPreprocessed.webpackConfig,
       '--require', path.join(__dirname, 'setup.js'),
       '--require', 'ignore-styles',
+      `--reporter=${confPreprocessed.reporter}`,
       confPreprocessed.specGlob,
     ];
 

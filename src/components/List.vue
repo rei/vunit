@@ -8,9 +8,20 @@
 
 <script>
 export default {
-  name: 'list',
+  name: 'List',
   props: [
-    'items'
-  ]
-}
+    'items',
+  ],
+
+  data() {
+    return {
+      a: 1,
+    };
+  },
+
+  funcNotCalled() {
+    return true;
+  },
+
+};
 </script>

@@ -1,5 +1,5 @@
 const assert = require('assert');
-const lib = require('../lib/');
+const lib = require('../lib');
 
 describe('getArguments', () => {
   it('should exist', () => {
@@ -11,7 +11,7 @@ describe('getArguments', () => {
     assert.deepEqual(lib.getArguments(argv), {
       a: '1',
       b: '2',
-      c: true
+      c: true,
     });
   });
 });
@@ -23,7 +23,7 @@ describe('validateArguments', () => {
 
   it('should validate args per validate function', () => {
     const args = {
-      watch: 'js,test'
+      watch: 'js,test',
     };
 
     assert.ok(lib.validateArgs(args, [{
@@ -34,19 +34,19 @@ describe('validateArguments', () => {
         }
         return true;
       },
-      error: "Error message.",
+      error: 'Error message.',
     }]));
   });
 
   it('should error if validation fails', () => {
     const args = {
-      watch: 'js,test'
+      watch: 'js,test',
     };
 
     assert.ok(!lib.validateArgs(args, [{
       option: 'watch',
       validate: () => false,
-      error: "Error message here.",
+      error: 'Error message here.',
     }]));
   });
 });
@@ -60,7 +60,7 @@ describe('parseInput', () => {
     const options = {
       watch: 'js,test',
       blah1: 1,
-      spec: '/path/to/spec'
+      spec: '/path/to/spec',
     };
 
     assert.equal(lib.parseInput(options), null);
@@ -69,7 +69,8 @@ describe('parseInput', () => {
   it('should return parsed options if valid input', () => {
     const options = {
       watch: 'js,test',
-      spec: '/path/to/spec'
+      spec: '/path/to/spec',
+      reporter: 'tap',
     };
 
     assert.deepEqual(lib.parseInput(options), {
@@ -78,6 +79,7 @@ describe('parseInput', () => {
       watch: 'js,test',
       'webpack-config': false,
       require: false,
+      reporter: 'tap',
     });
   });
 });
