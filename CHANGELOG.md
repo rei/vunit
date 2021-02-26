@@ -1,8 +1,7 @@
 # Changelog
 
-## 5.0.0-beta
-### 12/28/2020 - 
-### 12/28/2020 - [Diff](https://github.com/rei/vunit/compare/5.0.0...4.1.0) — [Docs](https://github.com/rei/vunit/blob/5.0.0/ReadMe.md)
+## 5.0.0
+### 2/25/2021 - [Diff](https://github.com/rei/vunit/compare/5.0.0...4.1.0) — [Docs](https://github.com/rei/vunit/blob/5.0.0/ReadMe.md)
 - Update to Vue 3.
 - Update vue-test-utils to ^2
 - Add ability to pass in reporter for code coverage
