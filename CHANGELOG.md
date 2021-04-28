@@ -1,5 +1,8 @@
 # Changelog
 
+## 5.0.1
+### 4/28/2021 - [Diff](https://github.com/rei/vunit/compare/5.0.1...5.0.0) — [Docs](https://github.com/rei/vunit/blob/5.0.0/ReadMe.md)
+- `vue@3.0.8` introduced an existence check for `SVGElement` in `@vue/runtime-dom`. This broke `jsdom` as it didn't have a reference to `SVGElement`. The Vue core team fixed this in `vue-cli`. This patch brings that fix into our mochapack `setup.js`. For context, please see the [original issue](https://github.com/vuejs/vue-next/issues/3590).
 ## 5.0.0
 ### 2/25/2021 - [Diff](https://github.com/rei/vunit/compare/5.0.0...4.1.0) — [Docs](https://github.com/rei/vunit/blob/5.0.0/ReadMe.md)
 - Update to Vue 3.
