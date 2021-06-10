@@ -1,7 +1,7 @@
 {
   "name": "@rei/vunit",
   "description": "Write unit tests against your Vue components using mocha and vue-test-utils",
-  "version": "4.1.0",
+  "version": "4.1.1",
   "author": "Alex Perkins <peripateticus.gh@gmail.com>",
   "repository": "https://github.com/rei/vunit",
   "license": "MIT",
@@ -42,9 +42,9 @@
     "postcss-loader": "^3.0.0",
     "sass-loader": "^8.0.2",
     "style-loader": "^1.1.3",
-    "vue": "^2.6.11",
+    "vue": "^2.6.14",
     "vue-loader": "^15.9.0",
-    "vue-template-compiler": "^2.6.11",
+    "vue-template-compiler": "^2.6.14",
     "webpack-node-externals": "^1.6.0"
   },
   "devDependencies": {
