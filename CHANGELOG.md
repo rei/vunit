@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.1.1
+### 06/10/2021 - [Diff](https://github.com/rei/vunit/compare/4.1.0...4.1.1) — [Docs](https://github.com/rei/vunit/blob/4.1.1/ReadMe.md)
+- Bumping Vue version
+
 ## 4.1.0
 ### 12/18/2020 - [Diff](https://github.com/rei/vunit/compare/4.1.0...4.0.1) — [Docs](https://github.com/rei/vunit/blob/4.1.0/ReadMe.md)
 - Allow overriding of `.nycrc`. If a local `.nycrc` is present, it will use that instead of default `.nycrc`.
